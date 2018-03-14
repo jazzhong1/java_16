@@ -10,6 +10,7 @@ public class SelectTest2 {
 
 		String user = "scott";
 		String password = "tiger";
+		View view = new View();
 
 		String url = "jdbc:oracle:thin:@192.168.20.58:1521:xe";
 		String driver = "oracle.jdbc.driver.OracleDriver";
@@ -42,12 +43,9 @@ public class SelectTest2 {
 				dbDTO.setDeptno(rs.getInt("deptno"));
 				dbDTO.setDname(rs.getString("dname"));
 				dbDTO.setLoc(rs.getString("loc"));
-				arrayList.add(dbDTO);
 				
 				
-				
-				View view = new View();
-				view.view(arrayList);
+				view.view(dbDTO);
 			} else {
 				System.out.println("해당 부서의 번호가 없습니다.");
 			}

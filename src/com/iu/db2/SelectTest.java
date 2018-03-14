@@ -57,8 +57,8 @@ public class SelectTest {
 				e2.printStackTrace();
 			}
 		}
+		
 		v.view(arrayList);
 		
 	}
-
 }
