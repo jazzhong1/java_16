@@ -23,19 +23,29 @@ public class SelectTest2 {
 			Class.forName(driver);
 			
 			Connection con=DriverManager.getConnection(url, user, password);
+							
 			
+							//=========세트
 			String sql="select * from dept where deptno=?";
 			PreparedStatement st=con.prepareStatement(sql);
-			
 			st.setInt(1, deptno);	//물음표에 넣어주기 
+									//물음표에 넣어주기 안하면  excuteQuery에서 걸림 
 			
-			ResultSet rs=st.executeQuery();
+							//=========세트
+			
+			ResultSet rs=st.executeQuery();//DQL은 executeQuery 로 받는다.
+	
+			//Cursor 한줄씩 꺼내서 읽으려 한다. 
 
-			while(rs.next()){
+			if(rs.next()){	//여기서 where문에 따라 true,false 여부를 판단함.
+							//PK가 아닌걸로 검색할경우 여러개가 올수도있다.
 				System.out.println("==============================");
 				System.out.println("DEPTNO: "+rs.getInt("DEPTNO"));
 				System.out.println("DNAME: "+rs.getString("DNAME"));
 				System.out.println("LOC: "+rs.getString("LOC"));
+			}
+			else{
+				System.out.println("해당 부서의 번호가 없습니다.");
 			}
 			
 		} catch (Exception e) {
