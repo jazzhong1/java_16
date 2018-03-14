@@ -7,9 +7,13 @@ public class Deletetest {
 
 	public static void main(String[] args) {
 		
+		//접속정보
 		String user="scott";
 		String password="tiger";
 		
+		//SID
+		//orcl 
+		//Express Edition :xe
 		String url="jdbc:oracle:thin:@192.168.20.58:1521:xe";
 		String driver="oracle.jdbc.driver.OracleDriver";
 		
@@ -17,10 +21,11 @@ public class Deletetest {
 	
 		
 		try {
-			//1. 드라이버 객체생성
-			Class.forName(driver);
+			//1. 드라이버 객체생성,드라이버 메모리에 로딩 
+			Class.forName(driver);		//웹할떄 나옴
+										//매개변수로 받는 클래스로 만듬 
 			
-			//2.커넥션 객체로 연결
+			//2.커넥션 객체로 연결	로그인과정.
 			Connection con=DriverManager.getConnection(url, user, password);
 
 			//3.쿼리문작성

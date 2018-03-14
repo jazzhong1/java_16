@@ -21,7 +21,7 @@ public class InsertTest {
 		
 		Scanner sc=new Scanner(System.in);
 		System.out.println("deptno:");
-		String deptno=sc.next();
+		int deptno=sc.nextInt();
 		System.out.println("dname:");
 		String dname=sc.next();
 		System.out.println("loc:");
@@ -39,11 +39,17 @@ public class InsertTest {
 			//3.Connection 연결 DB연결시에는 Soket이 아니라 connection 객체를 ㅅ용한다.
 			Connection con=DriverManager.getConnection(url, user, password);
 			
+			
 			//4.sql문 생성
-			String sql="INSERT INTO DEPT VALUES("+60+","+"'"+dname+"'"+","+"'"+loc+"'"+")";
+			String sql="INSERT INTO DEPT VALUES("+deptno+",'"+dname+"','"+loc+"')";
+											//문자열 입력씨 ''입력해야한다. 
 			System.out.println(sql);
+			
+			
+			
 											//이클립스에선 쿼리문뒤에 세미클론 붙이지 않음
-			//5.Statement 생성 및 준비
+			//5.Statement 생성 및 준비 데이터베이스에서 읽을수 있게 변경 해주는 구현객체 
+			//Statemet 보만문제 때문에 잘 사용하지 않음.
 			Statement st=con.createStatement();
 		
 			//6.전송 
