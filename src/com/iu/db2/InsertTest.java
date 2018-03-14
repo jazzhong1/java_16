@@ -21,22 +21,22 @@ public class InsertTest {
 		
 		String driver="oracle.jdbc.driver.OracleDriver";
 	
-	
-	
+		Connection con=null;
+		PreparedStatement st=null;
 		try {
 			
 			//1.드라이버 메모리에 로딩
 			Class.forName(driver);
 			
 			//2.커넥션 연결,
-			Connection con=DriverManager.getConnection(url, user, password);
+			con=DriverManager.getConnection(url, user, password);
 			
 			//3.sql문 작성
 			String sql="insert into dept values(?,?,?)";
 			//필드명이없을경우 하나라도 빠지면 에러
 			
 			//4.PreparedStatement 객체생성
-			PreparedStatement st=con.prepareStatement(sql);	//미리 넣어준다. 
+			st=con.prepareStatement(sql);	//미리 넣어준다. 
 			//데이터베이스 로 미리보낸다. 
 			//데이터베이스는 작업을 준비한다. 
 			
@@ -58,6 +58,13 @@ public class InsertTest {
 				
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				st.close();
+				con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 }

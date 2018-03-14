@@ -15,30 +15,26 @@ public class SelectTest3 {
 		String url="jdbc:oracle:thin:@192.168.20.58:1521:xe";
 		String dirver="oracle.jdbc.driver.OracleDriver";
 		
-		String ename="WARD";
 		
 		try {
 			Class.forName(dirver);
 			
 			Connection con=DriverManager.getConnection(url, user, password);
 			
-			String sql="select ename,(sal+NVL(comm,0))*12 from emp where ename=?";
+			String sql="select ename,(sal+NVL(comm,0))*12 as yearsal from emp";
 			PreparedStatement st=con.prepareStatement(sql);
-			st.setString(1, ename);
 			
 			ResultSet rs=st.executeQuery();
 			
-			if(rs.next()){
-				System.out.println("ename:"+rs.getString(1));
-				System.out.println("sal:"+rs.getInt(2));
-			}
-			else{
-				System.out.println("정보없습니다.");
+			while(rs.next()){
+				System.out.println("=======================");
+				System.out.println("ename: "+rs.getString("ename"));
+				System.out.println("yearsal: "+rs.getInt("yearsal"));
 			}
 			
 		
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
